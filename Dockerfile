@@ -5,7 +5,8 @@ FROM python:3.9
 
 WORKDIR /code
 
-RUN USER=$(whoami); mkdir -p .config/matplotlib; chown -R $USER:$USER .config/matplotlib
+ENV MPLCONFIGDIR=/code/.config/matplotlib
+RUN USER=$(whoami); mkdir -p ${MPLCONFIGDIR}; chown -R $USER:$USER ${MPLCONFIGDIR}
 
 COPY ./requirements.txt /code/requirements.txt
 
