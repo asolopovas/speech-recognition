@@ -7,14 +7,13 @@ USER www-data
 WORKDIR /code
 
 
-COPY ./requirements.txt /code/requirements.txt
+RUN chown www-data:www-data /code
+RUN chown www-data:www-data /var/www
 
 RUN pip install --no-cache-dir --prefer-binary -U -r /code/requirements.txt
 
 COPY . .
 ENV MPLCONFIGDIR=/tmp/matplotlib
-RUN chown www-data:www-data /code
-RUN chown www-data:www-data /code
-RUN chown www-data:www-data /var/www
+COPY ./requirements.txt /code/requirements.txt
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
