@@ -4,6 +4,7 @@
 FROM python:3.9
 
 WORKDIR /code
+RUN mkdir -p /.config/matplotlib && chown -R /.config/matplotlib
 
 COPY ./requirements.txt /code/requirements.txt
 
