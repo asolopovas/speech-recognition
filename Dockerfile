@@ -8,7 +8,7 @@ WORKDIR /code
 
 
 RUN chown www-data:www-data /code
-RUN chown www-data:www-data /var/www
+RUN mkdir -p /var/www; chown -R www-data:www-data /var/www
 
 RUN pip install --no-cache-dir --prefer-binary -U -r /code/requirements.txt
 
