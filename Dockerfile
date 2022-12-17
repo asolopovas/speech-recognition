@@ -2,18 +2,13 @@
 # you will also find guides on how best to write your Dockerfile
 
 FROM python:3.9
-USER www-data
 
 WORKDIR /code
 
-
-RUN chown www-data:www-data /code
-RUN chown -R www-data:www-data /var/www > /dev/null 2>&1
-
-RUN pip install --no-cache-dir --prefer-binary -U -r /code/requirements.txt
+COPY ./requirements.txt /code/requirements.txt
+RUN pip install --no-cache-dir --prefer-binary -r /code/requirements.txt
 
 COPY . .
-ENV MPLCONFIGDIR=/tmp/matplotlib
-COPY ./requirements.txt /code/requirements.txt
 
+ENV MPLCONFIGDIR=/tmp/matplotlib
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
