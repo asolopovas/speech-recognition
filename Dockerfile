@@ -2,6 +2,7 @@
 # you will also find guides on how best to write your Dockerfile
 
 FROM python:3.9
+USER www-data
 
 WORKDIR /code
 
