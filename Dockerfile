@@ -6,9 +6,8 @@ FROM python:3.9
 WORKDIR /code
 
 COPY ./requirements.txt /code/requirements.txt
-RUN pip install --no-cache-dir --prefer-binary -r /code/requirements.txt
+RUN pip install --no-cache-dir -r /code/requirements.txt
 
-RUN pip install --user matplotlib
 COPY . .
 
 ENV MPLCONFIGDIR=/tmp/matplotlib
