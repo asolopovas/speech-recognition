@@ -5,13 +5,13 @@ FROM python:3.9
 
 WORKDIR /code
 
-ENV MPLCONFIGDIR=/code/.config/matplotlib
-RUN USER=$(whoami); mkdir -p ${MPLCONFIGDIR}; chown -R $USER:$USER ${MPLCONFIGDIR}
 
 COPY ./requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --prefer-binary -U -r /code/requirements.txt
 
 COPY . .
+ENV MPLCONFIGDIR=/code/.config/matplotlib
+RUN USER=$(whoami); mkdir -p ${MPLCONFIGDIR}; chown -R $USER:$USER ${MPLCONFIGDIR}
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
