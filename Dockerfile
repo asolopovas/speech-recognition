@@ -4,7 +4,8 @@
 FROM python:3.9
 
 WORKDIR /code
-RUN USER=$(whoami); mkdir -p /.config/matplotlib; chown -R $USER:$USER /.config/matplotlib
+
+RUN USER=$(whoami); mkdir -p .config/matplotlib; chown -R $USER:$USER .config/matplotlib
 
 COPY ./requirements.txt /code/requirements.txt
 
