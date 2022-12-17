@@ -9,7 +9,7 @@ RUN USER=$(whoami); mkdir -p .config/matplotlib; chown -R $USER:$USER .config/ma
 
 COPY ./requirements.txt /code/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir --prefer-binary -U -r /code/requirements.txt
 
 COPY . .
 
